@@ -13,16 +13,12 @@ void printarVetor(vector<int> vetor, int qtdDigitos){
     cout << endl;
 }
 
-int investigandoZerosUns(string n, int qtdDigitos){
-    n.erase(std::remove_if(n.begin(), n.end(), ::isspace),n.end());
-    //cout << n << endl;
-    //int qtdDigitos = n.size();  
-    //size_t qtdDigitos = sizeof(n)/sizeof(int);
-    //cout << qtdDigitos;
+int investigandoZerosUns(vector<int> N, int qtdDigitos){
+    
     T1[0] = 1; int somaT1 = 0;
     T2[0] = 0; int somaT2 = 0;
     for(int i=0; i<qtdDigitos; i++) {
-        int numeroAtual = n[i] - '0';
+        int numeroAtual = N[i];
         if(numeroAtual == 0){
             T1[i] = T1[i-1];
             T2[i] = T2[i-1]+1;
@@ -37,13 +33,13 @@ int investigandoZerosUns(string n, int qtdDigitos){
 }
 
 int main(){
-    //int t;
-    //cin >> t;
-    //for(int i=0; i<t; i++){
-        int qtdDigitos;
-        cin >> qtdDigitos;
-        string s;
-        getline(cin >> ws, s);
-        cout << investigandoZerosUns(s, qtdDigitos) << endl;
-    //}
+    int qtdDigitos;
+    cin >> qtdDigitos;
+    vector<int> N(qtdDigitos, -1);
+
+    for(int i=0; i<qtdDigitos; i++){
+        cin >> N[i];
+    }
+
+    cout << investigandoZerosUns(N, qtdDigitos) << endl;
 }
