@@ -1,0 +1,6 @@
+T2(1) = 0
+T2(2)
+
+t1 = preencher tudo
+t2 = deixar 1 buraco na n-1
+
