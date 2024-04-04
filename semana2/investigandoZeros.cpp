@@ -1,45 +1,44 @@
 #include <bits/stdc++.h>
-#include <vector>
 
 using namespace std;
 
-vector<int> T1(10000, -1);
-vector<int> T2(10000, -1);
+vector<int> T1(100000, -1);
+vector<int> T2(100000, -1);
 
-void printarVetor(vector<int> vetor, int qtdDigitos){
-    for(int i=0; i<qtdDigitos; i++){
-        cout << vetor[i] << " ";
-    }
-    cout << endl;
-}
-
-int investigandoZerosUns(vector<int> N, int qtdDigitos){
+int investigandoZerosUns(vector<int> V, int qtdDigitos){    
     
-    T1[0] = 1; int somaT1 = 0;
-    T2[0] = 0; int somaT2 = 0;
-    for(int i=0; i<qtdDigitos; i++) {
-        int numeroAtual = N[i];
+    int somaT1 = 0;
+    T1[1] = 1; T2[1] = 0;
+
+    if(V[1] == 0){
+        T1[1] = 0;
+        T2[1] = 1;
+    }
+
+    somaT1 = T1[1];
+    
+    for(int i=2; i<qtdDigitos+1; i++) {
+        int numeroAtual = V[i];
         if(numeroAtual == 0){
-            T1[i] = T1[i-1];
-            T2[i] = T2[i-1]+1;
+            T1[i] = T1[i-1]; T2[i] = T2[i-1]+1;
         }else{
-            T1[i] = T2[i-1]+1;
-            T2[i] = T1[i-1];
+            T1[i] = T2[i-1]+1; T2[i] = T1[i-1];
         }
         somaT1 = somaT1 + T1[i]; 
     }
-    //printarVetor(T1, qtdDigitos);
-    return somaT1; // +1 de T[0] = 1
+
+    return somaT1; 
 }
 
 int main(){
-    int qtdDigitos;
+    int qtdDigitos = 0;
     cin >> qtdDigitos;
-    vector<int> N(qtdDigitos, -1);
 
-    for(int i=0; i<qtdDigitos; i++){
-        cin >> N[i];
+    vector<int> V(qtdDigitos+1, -1);
+
+    for(int i=1; i<qtdDigitos+1; i++){
+        cin >> V[i];
     }
 
-    cout << investigandoZerosUns(N, qtdDigitos) << endl;
+    cout << investigandoZerosUns(V, qtdDigitos) << endl;
 }
