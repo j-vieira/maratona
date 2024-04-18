@@ -16,7 +16,7 @@ int investigandoZerosUns(vector<int> V, int qtdDigitos){
     }
 
     somaT1 = T1[1];
-    
+    /*
     for(int i=2; i<qtdDigitos+1; i++) {
         int numeroAtual = V[i];
         if(numeroAtual == 0){
@@ -28,6 +28,23 @@ int investigandoZerosUns(vector<int> V, int qtdDigitos){
     }
 
     return somaT1; 
+    */
+    int i = 2;
+
+    while(i < qtdDigitos+1){
+        cout << V[i];
+        int numeroAtual = V[i];
+        if(numeroAtual == 0){
+            T1[i] = T1[i-1]; T2[i] = T2[i-1]+1;
+        }else{
+            T1[i] = T2[i-1]+1; T2[i] = T1[i-1];
+        }
+        somaT1 = somaT1 + T1[i]; 
+
+        i++;
+    }
+    cout << endl;
+    return somaT1;
 }
 
 int main(){
